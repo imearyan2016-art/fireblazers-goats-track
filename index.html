@@ -1,16 +1,25 @@
 
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>Subscriber Showdown</title>
 
-<!-- SUBSCRIBER SHOWDOWN FAVICON -->
+<!-- Browser favicon -->
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Apple / iOS Home Screen icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Theme and app appearance -->
 <meta name="theme-color" content="#151b2b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Showdown">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <style>
 *{box-sizing:border-box}
@@ -47,7 +56,7 @@ body{margin:0;background:linear-gradient(135deg,#fff0e9,#eef4ff 55%,#f7f8fc);fon
 .status{font-size:.78rem;color:#687386;margin-top:12px;min-height:20px}
 .controls{margin-top:18px;background:white;padding:17px;border-radius:17px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .controls small{display:block;color:#687386;margin-top:4px}
-button{background:#151b2b;color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:850}
+button{background:#151b2b;color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:850;cursor:pointer}
 button:disabled{opacity:.5}
 .note{text-align:center;color:#687386;font-size:.77rem;line-height:1.5;margin:18px 5px}
 .winner{display:none;text-align:center;background:#fff6d9;border:1px solid #efd16b;border-radius:14px;padding:15px;margin-top:16px;font-weight:900}
@@ -85,20 +94,16 @@ button:disabled{opacity:.5}
 <div class="count" id="fc">—</div>
 <div class="target">GOAL 139</div>
 </div>
-
 <div class="bar"><div class="fill" id="ff"></div></div>
-
 <div class="meta">
 <span id="fp">Loading…</span>
 <span id="fl">100 to go</span>
 </div>
-
 <div class="stats">
 <div class="stat"><b>39</b><span>START</span></div>
 <div class="stat"><b id="fg">—</b><span>GAINED</span></div>
 <div class="stat"><b>139</b><span>TARGET</span></div>
 </div>
-
 <div class="status" id="fs">Waiting for channel data…</div>
 </article>
 
@@ -116,20 +121,16 @@ button:disabled{opacity:.5}
 <div class="count" id="gc">—</div>
 <div class="target">GOAL 110</div>
 </div>
-
 <div class="bar"><div class="fill" id="gf"></div></div>
-
 <div class="meta">
 <span id="gp">Loading…</span>
 <span id="gl">100 to go</span>
 </div>
-
 <div class="stats">
 <div class="stat"><b>10</b><span>START</span></div>
 <div class="stat"><b id="gg">—</b><span>GAINED</span></div>
 <div class="stat"><b>110</b><span>TARGET</span></div>
 </div>
-
 <div class="status" id="gs">Waiting for channel data…</div>
 </article>
 
@@ -187,11 +188,10 @@ if(!r.ok)throw Error(d.error||"YouTube data unavailable");
 let f=draw("f",d.fireblazers,39,139);
 let g=draw("g",d.goats,10,110);
 
-$("updated").textContent="Last updated: "+new Date(d.fetchedAt).toLocaleString();
+$("updated").textContent="Last updated: "+new Date(d.updatedAt||d.fetchedAt||Date.now()).toLocaleString();
 $("live").textContent="LIVE DATA CONNECTED";
 
 $("winner").style.display=(f||g)?"block":"none";
-
 $("winner").textContent=
 f&&g
 ?"🏆 BOTH TARGETS REACHED — VERIFY WHICH CAME FIRST!"
