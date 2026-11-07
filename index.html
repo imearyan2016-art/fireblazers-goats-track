@@ -1,16 +1,220 @@
+
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Subscriber Showdown</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Subscriber Showdown</title>
+
+<!-- SUBSCRIBER SHOWDOWN FAVICON -->
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="theme-color" content="#151b2b">
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fff0e9,#eef4ff 55%,#f7f8fc);font-family:system-ui,-apple-system,sans-serif;color:#151b2b}.wrap{max-width:1000px;margin:auto;padding:28px 16px}.hero{text-align:center}.hero small{color:#7052b8;font-weight:900;letter-spacing:.16em}.hero h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1;margin:12px 0}.hero p{color:#687386}.live{display:inline-block;background:#e8f8ee;color:#176b39;padding:8px 14px;border-radius:30px;font-weight:800;font-size:13px;margin:8px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}.card{background:white;border-radius:24px;padding:22px;box-shadow:0 12px 34px #15223a14;border:1px solid #e0e5ee}.fire{border-top:6px solid #ed5734}.goat{border-top:6px solid #3478c8}.head{display:flex;align-items:center;gap:14px}.logo{width:90px;height:90px;object-fit:cover;border-radius:50%;box-shadow:0 3px 14px #0002}.name{font-size:1.1rem;font-weight:950}.handle{font-size:.8rem;color:#697386;overflow-wrap:anywhere}.link{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:800;color:#365d9b}.row{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px}.count{font-size:clamp(2.7rem,8vw,4.3rem);font-weight:950;letter-spacing:-.06em}.fire .count{color:#ed5734}.goat .count{color:#3478c8}.target{font-weight:800;color:#697386}.bar{height:13px;background:#edf0f5;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;transition:width .4s}.fire .fill{background:linear-gradient(90deg,#ffad55,#ed5734)}.goat .fill{background:linear-gradient(90deg,#82c1ff,#3478c8)}.meta{display:flex;justify-content:space-between;color:#687386;font-size:.82rem;font-weight:750;margin:10px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.stat{text-align:center;background:#f5f7fa;padding:10px 4px;border-radius:12px}.stat b{display:block;font-size:1.1rem}.stat span{font-size:.68rem;color:#687386;font-weight:800}.status{font-size:.78rem;color:#687386;margin-top:12px;min-height:20px}.controls{margin-top:18px;background:white;padding:17px;border-radius:17px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.controls small{display:block;color:#687386;margin-top:4px}button{background:#151b2b;color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:850}button:disabled{opacity:.5}.note{text-align:center;color:#687386;font-size:.77rem;line-height:1.5;margin:18px 5px}.winner{display:none;text-align:center;background:#fff6d9;border:1px solid #efd16b;border-radius:14px;padding:15px;margin-top:16px;font-weight:900}@media(max-width:680px){.cards{grid-template-columns:1fr}.card{padding:18px}.logo{width:76px;height:76px}}
-</style></head><body><main class="wrap"><header class="hero"><small>THE OFFICIAL CONTEST TRACKER</small><h1>SUBSCRIBER<br>SHOWDOWN</h1><p>🔥 FIREBLAZERS VS. RUDRA &amp; GAUTAM 🐐</p><span class="live" id="live">CONNECTING TO YOUTUBE…</span></header>
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#fff0e9,#eef4ff 55%,#f7f8fc);font-family:system-ui,-apple-system,sans-serif;color:#151b2b}
+.wrap{max-width:1000px;margin:auto;padding:28px 16px}
+.hero{text-align:center}
+.hero small{color:#7052b8;font-weight:900;letter-spacing:.16em}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1;margin:12px 0}
+.hero p{color:#687386}
+.live{display:inline-block;background:#e8f8ee;color:#176b39;padding:8px 14px;border-radius:30px;font-weight:800;font-size:13px;margin:8px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.card{background:white;border-radius:24px;padding:22px;box-shadow:0 12px 34px #15223a14;border:1px solid #e0e5ee}
+.fire{border-top:6px solid #ed5734}
+.goat{border-top:6px solid #3478c8}
+.head{display:flex;align-items:center;gap:14px}
+.logo{width:90px;height:90px;object-fit:cover;border-radius:50%;box-shadow:0 3px 14px #0002}
+.name{font-size:1.1rem;font-weight:950}
+.handle{font-size:.8rem;color:#697386;overflow-wrap:anywhere}
+.link{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:800;color:#365d9b}
+.row{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px}
+.count{font-size:clamp(2.7rem,8vw,4.3rem);font-weight:950;letter-spacing:-.06em}
+.fire .count{color:#ed5734}
+.goat .count{color:#3478c8}
+.target{font-weight:800;color:#697386}
+.bar{height:13px;background:#edf0f5;border-radius:20px;overflow:hidden}
+.fill{height:100%;width:0;transition:width .4s}
+.fire .fill{background:linear-gradient(90deg,#ffad55,#ed5734)}
+.goat .fill{background:linear-gradient(90deg,#82c1ff,#3478c8)}
+.meta{display:flex;justify-content:space-between;color:#687386;font-size:.82rem;font-weight:750;margin:10px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{text-align:center;background:#f5f7fa;padding:10px 4px;border-radius:12px}
+.stat b{display:block;font-size:1.1rem}
+.stat span{font-size:.68rem;color:#687386;font-weight:800}
+.status{font-size:.78rem;color:#687386;margin-top:12px;min-height:20px}
+.controls{margin-top:18px;background:white;padding:17px;border-radius:17px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.controls small{display:block;color:#687386;margin-top:4px}
+button{background:#151b2b;color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:850}
+button:disabled{opacity:.5}
+.note{text-align:center;color:#687386;font-size:.77rem;line-height:1.5;margin:18px 5px}
+.winner{display:none;text-align:center;background:#fff6d9;border:1px solid #efd16b;border-radius:14px;padding:15px;margin-top:16px;font-weight:900}
+@media(max-width:680px){
+.cards{grid-template-columns:1fr}
+.card{padding:18px}
+.logo{width:76px;height:76px}
+}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+
+<header class="hero">
+<small>THE OFFICIAL CONTEST TRACKER</small>
+<h1>SUBSCRIBER<br>SHOWDOWN</h1>
+<p>🔥 FIREBLAZERS VS. RUDRA &amp; GAUTAM 🐐</p>
+<span class="live" id="live">CONNECTING TO YOUTUBE…</span>
+</header>
+
 <section class="cards">
-<article class="card fire"><div class="head"><img class="logo" src="/assets/fireblazers-logo.jpeg"><div><div class="name">TEAM FIREBLAZERS</div><div class="handle">@fireblazersgoated</div><a class="link" target="_blank" href="https://youtube.com/@fireblazersgoated">Open YouTube ↗</a></div></div><div class="row"><div class="count" id="fc">—</div><div class="target">GOAL 139</div></div><div class="bar"><div class="fill" id="ff"></div></div><div class="meta"><span id="fp">Loading…</span><span id="fl">100 to go</span></div><div class="stats"><div class="stat"><b>39</b><span>START</span></div><div class="stat"><b id="fg">—</b><span>GAINED</span></div><div class="stat"><b>139</b><span>TARGET</span></div></div><div class="status" id="fs">Waiting for channel data…</div></article>
-<article class="card goat"><div class="head"><img class="logo" src="/assets/goats-logo.png"><div><div class="name">TEAM GOATS</div><div class="handle">@RUDRAGAUTAMTHEG.O.A.T.S</div><a class="link" target="_blank" href="https://youtube.com/@RUDRAGAUTAMTHEG.O.A.T.S">Open YouTube ↗</a></div></div><div class="row"><div class="count" id="gc">—</div><div class="target">GOAL 110</div></div><div class="bar"><div class="fill" id="gf"></div></div><div class="meta"><span id="gp">Loading…</span><span id="gl">100 to go</span></div><div class="stats"><div class="stat"><b>10</b><span>START</span></div><div class="stat"><b id="gg">—</b><span>GAINED</span></div><div class="stat"><b>110</b><span>TARGET</span></div></div><div class="status" id="gs">Waiting for channel data…</div></article></section>
-<div class="winner" id="winner"></div><section class="controls"><div><b id="updated">Waiting for first update…</b><small>Automatic refresh every 60 seconds.</small></div><button id="refresh">↻ Refresh counts</button></section>
-<p class="note">Starting counts are the contest baselines: Fireblazers 39 and GOATS 10. Confirm both at the official start. Alternate/fake accounts are permitted by your contest rules, but YouTube may remove spam or invalid subscribers. Public counts can be delayed. This tracker cannot identify individual subscribers.</p></main>
+
+<article class="card fire">
+<div class="head">
+<img class="logo" src="/assets/fireblazers-logo.jpeg" alt="Fireblazers logo">
+<div>
+<div class="name">TEAM FIREBLAZERS</div>
+<div class="handle">@fireblazersgoated</div>
+<a class="link" target="_blank" rel="noopener noreferrer" href="https://youtube.com/@fireblazersgoated">Open YouTube ↗</a>
+</div>
+</div>
+
+<div class="row">
+<div class="count" id="fc">—</div>
+<div class="target">GOAL 139</div>
+</div>
+
+<div class="bar"><div class="fill" id="ff"></div></div>
+
+<div class="meta">
+<span id="fp">Loading…</span>
+<span id="fl">100 to go</span>
+</div>
+
+<div class="stats">
+<div class="stat"><b>39</b><span>START</span></div>
+<div class="stat"><b id="fg">—</b><span>GAINED</span></div>
+<div class="stat"><b>139</b><span>TARGET</span></div>
+</div>
+
+<div class="status" id="fs">Waiting for channel data…</div>
+</article>
+
+<article class="card goat">
+<div class="head">
+<img class="logo" src="/assets/goats-logo.png" alt="GOATS logo">
+<div>
+<div class="name">TEAM GOATS</div>
+<div class="handle">@RUDRAGAUTAMTHEG.O.A.T.S</div>
+<a class="link" target="_blank" rel="noopener noreferrer" href="https://youtube.com/@RUDRAGAUTAMTHEG.O.A.T.S">Open YouTube ↗</a>
+</div>
+</div>
+
+<div class="row">
+<div class="count" id="gc">—</div>
+<div class="target">GOAL 110</div>
+</div>
+
+<div class="bar"><div class="fill" id="gf"></div></div>
+
+<div class="meta">
+<span id="gp">Loading…</span>
+<span id="gl">100 to go</span>
+</div>
+
+<div class="stats">
+<div class="stat"><b>10</b><span>START</span></div>
+<div class="stat"><b id="gg">—</b><span>GAINED</span></div>
+<div class="stat"><b>110</b><span>TARGET</span></div>
+</div>
+
+<div class="status" id="gs">Waiting for channel data…</div>
+</article>
+
+</section>
+
+<div class="winner" id="winner"></div>
+
+<section class="controls">
+<div>
+<b id="updated">Waiting for first update…</b>
+<small>Automatic refresh every 60 seconds.</small>
+</div>
+<button id="refresh">↻ Refresh counts</button>
+</section>
+
+<p class="note">
+Starting counts are the contest baselines: Fireblazers 39 and GOATS 10.
+Confirm both at the official start. Alternate/fake accounts are permitted by your contest rules, but YouTube may remove spam or invalid subscribers.
+Public counts can be delayed. This tracker cannot identify individual subscribers.
+</p>
+
+</main>
+
 <script>
-const $=id=>document.getElementById(id),fmt=n=>Number(n).toLocaleString();
-function draw(prefix,d,start,target){let n=Number(d.subscriberCount||0),gain=n-start,p=Math.max(0,Math.min(100,gain/(target-start)*100));$(prefix+"c").textContent=fmt(n);$(prefix+"g").textContent=(gain>0?"+":"")+fmt(gain);$(prefix+"f").style.width=p+"%";$(prefix+"p").textContent=Math.round(p)+"% of challenge";$(prefix+"l").textContent=Math.max(0,target-n)+" to go";$(prefix+"s").textContent=d.title||"Channel statistics loaded";return n>=target}
-async function refresh(){let b=$("refresh");b.disabled=true;b.textContent="Refreshing…";$("live").textContent="UPDATING…";try{let r=await fetch("/.netlify/functions/subscribers",{cache:"no-store"}),d=await r.json();if(!r.ok)throw Error(d.error||"YouTube data unavailable");let f=draw("f",d.fireblazers,39,139),g=draw("g",d.goats,10,110);$("updated").textContent="Last updated: "+new Date(d.fetchedAt).toLocaleString();$("live").textContent="LIVE DATA CONNECTED";$("winner").style.display=(f||g)?"block":"none";$("winner").textContent=f&&g?"🏆 BOTH TARGETS REACHED — VERIFY WHICH CAME FIRST!":f?"🏆 FIREBLAZERS REACHED 139 — VERIFY THE RESULT!":"🏆 THE GOATS REACHED 110 — VERIFY THE RESULT!"}catch(e){$("live").textContent="SETUP NEEDED";$("fs").textContent=e.message;$("gs").textContent="Check the API key and Netlify deployment.";$("updated").textContent="Could not refresh. See setup instructions."}finally{b.disabled=false;b.textContent="↻ Refresh counts"}}
-$("refresh").addEventListener("click",refresh);refresh();setInterval(refresh,60000);
-</script></body></html>
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n).toLocaleString();
+
+function draw(prefix,d,start,target){
+let n=Number(d.subscriberCount||0);
+let gain=n-start;
+let p=Math.max(0,Math.min(100,gain/(target-start)*100));
+
+$(prefix+"c").textContent=fmt(n);
+$(prefix+"g").textContent=(gain>0?"+":"")+fmt(gain);
+$(prefix+"f").style.width=p+"%";
+$(prefix+"p").textContent=Math.round(p)+"% of challenge";
+$(prefix+"l").textContent=Math.max(0,target-n)+" to go";
+$(prefix+"s").textContent=d.title||"Channel statistics loaded";
+
+return n>=target;
+}
+
+async function refresh(){
+let b=$("refresh");
+b.disabled=true;
+b.textContent="Refreshing…";
+$("live").textContent="UPDATING…";
+
+try{
+let r=await fetch("/.netlify/functions/subscribers",{cache:"no-store"});
+let d=await r.json();
+
+if(!r.ok)throw Error(d.error||"YouTube data unavailable");
+
+let f=draw("f",d.fireblazers,39,139);
+let g=draw("g",d.goats,10,110);
+
+$("updated").textContent="Last updated: "+new Date(d.fetchedAt).toLocaleString();
+$("live").textContent="LIVE DATA CONNECTED";
+
+$("winner").style.display=(f||g)?"block":"none";
+
+$("winner").textContent=
+f&&g
+?"🏆 BOTH TARGETS REACHED — VERIFY WHICH CAME FIRST!"
+:f
+?"🏆 FIREBLAZERS REACHED 139 — VERIFY THE RESULT!"
+:"🏆 THE GOATS REACHED 110 — VERIFY THE RESULT!";
+
+}catch(e){
+$("live").textContent="SETUP NEEDED";
+$("fs").textContent=e.message;
+$("gs").textContent="Check the API key and Netlify deployment.";
+$("updated").textContent="Could not refresh. See setup instructions.";
+
+}finally{
+b.disabled=false;
+b.textContent="↻ Refresh counts";
+}
+}
+
+$("refresh").addEventListener("click",refresh);
+refresh();
+setInterval(refresh,60000);
+</script>
+
+</body>
+</html>
